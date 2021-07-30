@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO.Ports;
 using System.Text;
-using System.IO.Ports;
 
 namespace SerialCommunication.Models
 {
@@ -18,29 +16,45 @@ namespace SerialCommunication.Models
             serialPort.StopBits = StopBits.One;
             serialPort.WriteTimeout = 1000;
             serialPort.ReadTimeout = 1000;
-            serialPort.Open();
+            serialPort.Encoding = Encoding.UTF8;
 
-            serialPort.Encoding=Encoding.UTF8;
+            serialPort.Open();
         }
 
         public static void SerialClose()
         {
-            serialPort.Close();
+            if (serialPort.IsOpen)
+            {
+                serialPort.Close();
+            }
         }
 
         public static void SendData(string sendData)
         {
-            serialPort.Write(sendData);
+            if (serialPort.IsOpen)
+            {
+                serialPort.Write(sendData);
+            }
         }
 
         public static string RecieveData()
         {
-            return serialPort.ReadExisting();
+            if (serialPort.IsOpen)
+            {
+                return serialPort.ReadExisting();
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         public static void BuffClear()
         {
-            serialPort.DiscardInBuffer();
+            if (serialPort.IsOpen)
+            {
+                serialPort.DiscardInBuffer();
+            }
         }
     }
 }

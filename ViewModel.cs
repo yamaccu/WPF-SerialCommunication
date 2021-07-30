@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Reactive.Bindings;
-using System.Collections.ObjectModel;
-using System.IO.Ports;
+﻿using Reactive.Bindings;
 using SerialCommunication.Models;
+using System;
+using System.IO.Ports;
 using System.Windows;
 
 namespace SerialCommunication
@@ -60,20 +57,15 @@ namespace SerialCommunication
 
         public void SerialClose()
         {
-            if (SerialCom.serialPort.IsOpen)
-            {
-                SerialCom.SerialClose();
-            }
+            SerialCom.SerialClose();
         }
 
         public void SendData()
         {
-            if (SerialCom.serialPort.IsOpen)
-            {
-                SerialCom.SendData(TXData.Value);
-                TXData.Value = string.Empty;
-            }
+            SerialCom.SendData(TXData.Value);
+            TXData.Value = string.Empty;
         }
+
         private void OnReceived(object sender, SerialDataReceivedEventArgs e)
         {
             RXData.Value += SerialCom.RecieveData();
