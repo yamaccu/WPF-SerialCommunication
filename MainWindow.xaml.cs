@@ -15,10 +15,9 @@ namespace SerialCommunication
             DataContext = viewModel;
         }
 
-        //各イベントのコマンドバインディングは実装していない
-        private void ComboBox_DropDownOpened_COMPort(object sender, EventArgs e)
+        private void ComboBoxDropDownOpened_COMPort(object sender, EventArgs e)
         {
-            viewModel.ScanCOMPorts();
+            viewModel.GetCOMPorts();
         }
 
         private void ButtonClick_Open(object sender, RoutedEventArgs e)
@@ -33,7 +32,7 @@ namespace SerialCommunication
 
         private void ButtonClick_Send(object sender, RoutedEventArgs e)
         {
-            viewModel.SendData();
+            viewModel.Send();
         }
 
         private void ButtonClick_Clear(object sender, RoutedEventArgs e)

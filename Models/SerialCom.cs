@@ -7,7 +7,7 @@ namespace SerialCommunication.Models
     {
         public static SerialPort serialPort = new SerialPort();
 
-        public static void SerialOpen(string port,int baudrate)
+        public static void StartListening(string port,int baudrate)
         {
             serialPort.PortName = port;
             serialPort.BaudRate = baudrate;
@@ -21,40 +21,19 @@ namespace SerialCommunication.Models
             serialPort.Open();
         }
 
-        public static void SerialClose()
+        public static void StopListening()
         {
-            if (serialPort.IsOpen)
-            {
-                serialPort.Close();
-            }
+            serialPort.Close();
         }
 
-        public static void SendData(string sendData)
+        public static void WriteData(string data)
         {
-            if (serialPort.IsOpen)
-            {
-                serialPort.Write(sendData);
-            }
+            serialPort.Write(data);
         }
 
-        public static string RecieveData()
+        public static string ReadData()
         {
-            if (serialPort.IsOpen)
-            {
-                return serialPort.ReadExisting();
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        public static void BuffClear()
-        {
-            if (serialPort.IsOpen)
-            {
-                serialPort.DiscardInBuffer();
-            }
+            return serialPort.ReadExisting();
         }
     }
 }

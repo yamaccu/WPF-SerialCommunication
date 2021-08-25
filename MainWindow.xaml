@@ -8,10 +8,10 @@
         Title="MainWindow" Height="400" Width="500">
     <Grid>
         <Canvas Margin="20,10,10,300">
-            <ComboBox Canvas.Left="10" Canvas.Top="30" Width="100" ItemsSource="{Binding COMPorts}" DropDownOpened="ComboBox_DropDownOpened_COMPort" SelectedValue="{Binding SelectedPort.Value}"/>
-            <ComboBox Canvas.Left="120" Canvas.Top="30" Width="100" ItemsSource="{Binding COMBaudrate}" SelectedValue="{Binding SelectedBaudrate.Value}" />
-            <Button Content="Open" Canvas.Left="230" Canvas.Top="30" Width="50" Click="ButtonClick_Open"/>
-            <Button Content="Close" Canvas.Left="290" Canvas.Top="30" Width="50"  Click="ButtonClick_Close"/>
+            <ComboBox Canvas.Left="10" Canvas.Top="30" Width="100" ItemsSource="{Binding COMPorts}" SelectedValue="{Binding SelectedPort.Value}" DropDownOpened="ComboBoxDropDownOpened_COMPort"/>
+            <ComboBox Canvas.Left="120" Canvas.Top="30" Width="100" ItemsSource="{Binding Baudrates}" SelectedValue="{Binding SelectedBaudrate.Value}" />
+            <Button Content="Open" Canvas.Left="230" Canvas.Top="30" Width="50" Click="ButtonClick_Open" IsEnabled="{Binding OpenButtonIsEnabled.Value}"/>
+            <Button Content="Close" Canvas.Left="290" Canvas.Top="30" Width="50"  Click="ButtonClick_Close" IsEnabled="{Binding CloseButtonIsEnabled.Value}"/>
             <Label Content="COMPort" Canvas.Top="5" Canvas.Left="5"/>
             <Label Content="Baud Rate" Canvas.Top="5" Canvas.Left="115"/>
         </Canvas>
@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <Label Content="TX" Margin="5,5,5,0" Grid.Row="0" Grid.Column="0"/>
-                <Button Content="Send" Margin="5,5,5,0" Grid.Row="0" Grid.Column="0" Click="ButtonClick_Send" />
+                <Button Content="Send" Margin="5,5,5,0" Grid.Row="0" Grid.Column="0" Click="ButtonClick_Send" IsEnabled="{Binding SendButtonIsEnabled.Value}"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <Label Content="RX" Margin="5,5,5,0"/>
